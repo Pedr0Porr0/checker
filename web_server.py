@@ -1906,13 +1906,13 @@ async def validator_page():
     <div class="navbar">
         <div class="logo">► VALIDATOR PRO</div>
         <div class="nav-links">
-            <a href="/">🔍 SEARCH</a>
-            <a href="/validator">🔐 VALIDATOR</a>
+            <a href="/">◇ SEARCH</a>
+            <a href="/validator">◆ VALIDATOR</a>
         </div>
     </div>
     
     <div class="container">
-        <h1>🔐 CREDENTIAL VALIDATOR</h1>
+        <h1>◆ CREDENTIAL VALIDATOR</h1>
         <div class="subtitle">Real Browser Testing & Validation</div>
         
         <div class="form-group">
@@ -1926,19 +1926,19 @@ async def validator_page():
         </div>
         
         <div class="form-group">
-            <label>📝 Username Field (optional, leave blank for auto-detect):</label>
+            <label>◊ Username Field (optional, leave blank for auto-detect):</label>
             <input type="text" id="val-user-field" placeholder="username or id">
         </div>
         
         <div class="form-group">
-            <label>🔑 Password Field (optional, leave blank for auto-detect):</label>
+            <label>◈ Password Field (optional, leave blank for auto-detect):</label>
             <input type="text" id="val-pass-field" placeholder="password or pwd">
         </div>
         
         <div class="button-group">
             <button class="btn" onclick="validate()">▼ VALIDATE CREDENTIALS</button>
             <button class="btn" onclick="clearForm()">✕ CLEAR ALL</button>
-            <button class="btn" onclick="window.location='/osint'" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">🔍 OSINT SEARCH</button>
+            <button class="btn" onclick="window.location='/osint'" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">◇ OSINT SEARCH</button>
         </div>
         
         <div class="validation-results" id="val-results"></div>
@@ -2388,7 +2388,7 @@ async def full_domain_investigation(domain: str):
 
 @app.get("/api/osint/credentials-hunt")
 async def credentials_hunt(query: str):
-    """🔍 HUNT CREDENCIALES VÁLIDAS WORLDWIDE - User/Pass de fugas mundiales"""
+    """◇ HUNT CREDENCIALES VÁLIDAS WORLDWIDE - User/Pass de fugas mundiales"""
     if not osint_client:
         raise HTTPException(status_code=500, detail="OSINT client not initialized")
     try:
@@ -2844,8 +2844,8 @@ async def osint_page():
     <div class="navbar">
         <div class="logo">► OSINT PRO</div>
         <div class="nav-links">
-            <a href="/">🔍 SEARCH</a>
-            <a href="/validator">🔐 VALIDATOR</a>
+            <a href="/">◇ SEARCH</a>
+            <a href="/validator">◆ VALIDATOR</a>
             <a href="/osint">🔎 OSINT</a>
         </div>
     </div>
@@ -2869,7 +2869,7 @@ async def osint_page():
                         <option value="ip">🔗 IP Address</option>
                     </select>
                 </div>
-                <button class="btn" onclick="searchOSINT()">🔍 SEARCH ALL BREACHES</button>
+                <button class="btn" onclick="searchOSINT()">◇ SEARCH ALL BREACHES</button>
             </div>
         </div>
         
@@ -2901,7 +2901,7 @@ async def osint_page():
                 </div>
                 
                 <div class="tool-card">
-                    <div class="tool-title">🔐 Hash Lookup</div>
+                    <div class="tool-title">◆ Hash Lookup</div>
                     <div class="tool-desc">Check if password hash is in known breaches</div>
                     <button class="tool-btn" onclick="quickHashLookup()">HASH CHECK</button>
                 </div>
