@@ -48,6 +48,14 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Ruta para servir favicon
+@app.get("/favicon.ico", include_in_schema=False)
+async def favicon():
+    favicon_path = os.path.join(os.path.dirname(__file__), "favicon.ico")
+    if os.path.exists(favicon_path):
+        return FileResponse(favicon_path, media_type="image/x-icon")
+    return {"detail": "Favicon not found"}
+
 # Utility functions
 def deduplicate_results(data):
     if not isinstance(data, list):
@@ -140,7 +148,7 @@ async def root():
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CHECKER PRO - Search</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230f0f1e'/%3E%3Ccircle cx='50' cy='50' r='45' fill='none' stroke='%2339ff14' stroke-width='2'/%3E%3Ctext x='50' y='75' font-size='80' font-weight='bold' font-family='Arial,sans-serif' fill='%2339ff14' text-anchor='middle' style='filter:drop-shadow(0 0 6px %2339ff14);'%3EC%3C/text%3E%3C/svg%3E" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -1639,7 +1647,7 @@ async def validator_page():
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VALIDATOR - Credential Validation</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230f0f1e'/%3E%3Ccircle cx='50' cy='50' r='45' fill='none' stroke='%2339ff14' stroke-width='2'/%3E%3Ctext x='50' y='75' font-size='80' font-weight='bold' font-family='Arial,sans-serif' fill='%2339ff14' text-anchor='middle' style='filter:drop-shadow(0 0 6px %2339ff14);'%3EC%3C/text%3E%3C/svg%3E" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -2596,7 +2604,7 @@ async def osint_page():
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OSINT - Intelligence Gathering</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230f0f1e'/%3E%3Ccircle cx='50' cy='50' r='45' fill='none' stroke='%2339ff14' stroke-width='2'/%3E%3Ctext x='50' y='75' font-size='80' font-weight='bold' font-family='Arial,sans-serif' fill='%2339ff14' text-anchor='middle' style='filter:drop-shadow(0 0 6px %2339ff14);'%3EC%3C/text%3E%3C/svg%3E" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
