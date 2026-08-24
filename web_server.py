@@ -1556,7 +1556,7 @@ async def root():
                 const div = document.createElement('div');
                 div.className = 'result-item';
                 div.innerHTML = `
-                    <div style="font-size: 16px; font-weight: bold; color: #00ff41; margin-bottom: 8px; text-shadow: 0 0 10px rgba(57, 255, 20, 0.8);">› ${idx + 1}</div>
+                    <div style="font-size: 16px; font-weight: bold; color: #00ff41; margin-bottom: 8px; text-shadow: 0 0 10px rgba(57, 255, 20, 0.8);">▶ ${idx + 1}</div>
                     <div class="result-field"><strong>USER:</strong> ${item.username || 'N/A'}</div>
                     <div class="result-field"><strong>PASS:</strong> ${item.password || 'N/A'}</div>
                     <div class="result-field"><strong>URL:</strong> ${item.url || 'N/A'}</div>
@@ -1906,12 +1906,12 @@ async def validator_page():
         <div class="subtitle">Real Browser Testing & Validation</div>
         
         <div class="form-group">
-            <label>🌐 Target URL:</label>
+            <label>◆ Target URL:</label>
             <input type="text" id="val-url" placeholder="https://example.com/login">
         </div>
         
         <div class="form-group">
-            <label>👤 Credentials (user:pass format, one per line):</label>
+            <label>◈ Credentials (user:pass format, one per line):</label>
             <textarea id="val-creds" placeholder="admin:password123&#10;user:pass456&#10;test:testing"></textarea>
         </div>
         
@@ -1926,7 +1926,7 @@ async def validator_page():
         </div>
         
         <div class="button-group">
-            <button class="btn" onclick="validate()">✓ VALIDATE CREDENTIALS</button>
+            <button class="btn" onclick="validate()">▼ VALIDATE CREDENTIALS</button>
             <button class="btn" onclick="clearForm()">✕ CLEAR ALL</button>
             <button class="btn" onclick="window.location='/osint'" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">🔍 OSINT SEARCH</button>
         </div>
@@ -1992,8 +1992,8 @@ async def validator_page():
                 const data = await response.json();
                 
                 let html = `<div class="results-header">`;
-                html += `✓ Tested: ${data.total || 0} | `;
-                html += `<span style="color: #22c55e;">✓ Valid: ${data.valid || 0}</span> | `;
+                html += `▼ Tested: ${data.total || 0} | `;
+                html += `<span style="color: #22c55e;">▼ Valid: ${data.valid || 0}</span> | `;
                 html += `<span style="color: #ef4444;">✗ Invalid: ${data.invalid || 0}</span>`;
                 if (data.blocked) {
                     html += ` | <span style="color: #f59e0b;">🔒 Blocked: ${data.blocked}</span>`;
