@@ -2812,63 +2812,57 @@ async def simple_search(field: str, query: str, offset: int = 0, limit: int = 20
     Solo trae los resultados necesarios para la página actual
     NO carga todo en memoria - pagina bajo demanda
     """
-    if not field or not query:
+    if not leaksyr_client or not field or not query:
         return {"status": "error", "data": [], "total": 0, "has_more": False}
     
     try:
-        # Mapear field a endpoint local
-        base_url = "http://127.0.0.1:8000"
-        endpoint_map = {
-            "domain": "/api/search/domain",
-            "username": "/api/search/username",
-            "email": "/api/search/email",
-            "cookies": "/api/search/cookies"
-        }
-        
-        if field not in endpoint_map:
+        # Usar Leaksyr Client directamente (sin HTTP interno)
+        if field == "domain":
+            response = leaksyr_client.search_domain(
+                domain=query,
+                match_mode="family",
+                limit=limit,
+                offset=offset
+            )
+        elif field == "email":
+            response = leaksyr_client.search_email(
+                email=query,
+                limit=limit,
+                offset=offset
+            )
+        elif field == "username":
+            response = leaksyr_client.search_username(
+                username=query,
+                limit=limit,
+                offset=offset
+            )
+        elif field == "cookies":
+            # Para cookies, usar domain search
+            response = leaksyr_client.search_domain(
+                domain=query,
+                match_mode="family",
+                limit=limit,
+                offset=offset
+            )
+        else:
             return {"status": "error", "data": [], "total": 0, "has_more": False}
         
-        local_endpoint = endpoint_map[field]
+        records = response.data
+        has_more = response.meta.has_more
+        total = response.meta.count
         
-        # Construir parámetros según tipo de búsqueda
-        if field == "domain":
-            params = {"domain": query, "match_mode": "family", "offset": offset, "limit": limit}
-        elif field == "cookies":
-            params = {"domain": query, "match_mode": "family", "offset": offset, "limit": limit}
-        else:  # username, email
-            params = {field: query, "offset": offset, "limit": limit}
+        print(f"[SIMPLE-SEARCH] field={field}, query={query}, offset={offset}, limit={limit}, total={total}, has_more={has_more}, returning={len(records)}")
         
-        # LLAMAR AL ENDPOINT LOCAL CON OFFSET/LIMIT ESPECÍFICOS
-        # Esto deja que Leaksyr maneje la paginación, no nosotros
-        async with httpx.AsyncClient(timeout=30) as client:
-            response = await client.get(
-                f"{base_url}{local_endpoint}",
-                params=params
-            )
-            
-            if response.status_code != 200:
-                return {"status": "error", "data": [], "total": 0, "has_more": False}
-            
-            data = response.json()
-            records = data.get("data", [])
-            meta = data.get("meta", {})
-            
-            # Obtener has_more directamente de Leaksyr API
-            has_more = meta.get("has_more", False)
-            total = meta.get("count", len(records))  # Total en Leaksyr
-            
-            print(f"[SIMPLE-SEARCH] field={field}, query={query}, offset={offset}, limit={limit}, total={total}, has_more={has_more}, returning={len(records)}")
-            
-            return {
-                "status": "ok",
-                "field": field,
-                "query": query,
-                "total": total,
-                "offset": offset,
-                "limit": limit,
-                "has_more": has_more,
-                "data": records
-            }
+        return {
+            "status": "ok",
+            "field": field,
+            "query": query,
+            "total": total,
+            "offset": offset,
+            "limit": limit,
+            "has_more": has_more,
+            "data": records
+        }
     except Exception as e:
         print(f"[SIMPLE-SEARCH] Error: {e}")
         return {"status": "error", "data": [], "total": 0, "has_more": False, "error": str(e)[:100]}
