@@ -1180,7 +1180,7 @@ async def root():
         </div>
         <div class="nav-right">
             <button class="btn-validator" onclick="window.location='/validator'">
-                <i class="fas fa-check-circle"></i> VALIDATOR
+                ► VALIDATOR
             </button>
         </div>
     </nav>
@@ -1197,10 +1197,10 @@ async def root():
         <div class="search-wrapper">
             <div class="search-form">
                 <select class="field-select" id="field-select" onchange="updatePlaceholder()">
-                    <option value="domain">🌐 DOMAIN</option>
-                    <option value="username">👤 USERNAME</option>
-                    <option value="email">📧 EMAIL</option>
-                    <option value="cookies">🍪 COOKIES</option>
+                    <option value="domain">◆ DOMAIN</option>
+                    <option value="username">◈ USERNAME</option>
+                    <option value="email">◊ EMAIL</option>
+                    <option value="cookies">◆ COOKIES</option>
                 </select>
                 
                 <select class="match-select" id="match-select" style="display: none;">
@@ -1210,16 +1210,16 @@ async def root():
                 </select>
                 
                 <div class="search-input-wrapper">
-                    <span class="search-prompt">></span>
+                    <span class="search-prompt">▶</span>
                     <input type="text" class="search-input" id="search-input" placeholder="ENTER DOMAIN...">
                 </div>
                 
                 <button class="btn-execute" onclick="executeSearch()">
-                    <i class="fas fa-bolt"></i> EXECUTE
+                    ▶ EXECUTE
                 </button>
                 
                 <button class="btn-filters">
-                    <i class="fas fa-sliders-h"></i>
+                    ◈ FILTERS
                 </button>
             </div>
         </div>
@@ -1232,13 +1232,13 @@ async def root():
         <!-- EXPORT BUTTONS -->
         <div class="export-buttons" id="export-buttons" style="display: none;">
             <button class="btn-export" onclick="exportExcel()">
-                <i class="fas fa-file-excel"></i> EXCEL
+                ▼ EXCEL
             </button>
             <button class="btn-export" onclick="exportPDF()">
-                <i class="fas fa-file-pdf"></i> PDF
+                ▼ PDF
             </button>
             <button class="btn-export" onclick="exportTXT()">
-                <i class="fas fa-file-alt"></i> TXT
+                ▼ TXT
             </button>
         </div>
     </div>
@@ -1304,7 +1304,7 @@ async def root():
             const div = document.createElement('div');
             div.className = 'result-item';
             div.innerHTML = `
-                <div class="result-field"><strong>SOURCE:</strong> ${source}</div>
+                <div class="result-field">◊ <strong>SOURCE:</strong> ${source}</div>
                 <div class="result-field"><strong>DATA:</strong></div>
                 <pre style="color: #39ff14; margin: 10px 0; padding: 10px; background: rgba(0,0,0,0.3); border-radius: 4px; max-height: 400px; overflow-y: auto; font-size: 12px;">${JSON.stringify(data, null, 2)}</pre>
             `;
@@ -1378,7 +1378,7 @@ async def root():
                 btn.className = 'btn-execute';
                 btn.style.margin = '20px auto';
                 btn.style.display = 'block';
-                btn.textContent = '⟳ LOAD MORE CREDENTIALS';
+                btn.textContent = '▶ LOAD MORE CREDENTIALS';
                 btn.onclick = loadMoreLeaksCredentials;
                 const resultsDiv = document.getElementById('results');
                 resultsDiv.parentNode.insertBefore(btn, document.getElementById('export-buttons'));
@@ -1447,7 +1447,7 @@ async def root():
             lastSearchParams = { query, field };
             
             const resultsDiv = document.getElementById('results');
-            resultsDiv.innerHTML = '<div class="loading">⟳ SEARCHING...</div>';
+            resultsDiv.innerHTML = '<div class="loading">▶ SEARCHING...</div>';
             document.getElementById('export-buttons').style.display = 'none';
             hideLoadMoreButton();
             
@@ -1535,7 +1535,7 @@ async def root():
                 btn.className = 'btn-execute';
                 btn.style.margin = '20px auto';
                 btn.style.display = 'block';
-                btn.textContent = '⟳ LOAD MORE RESULTS';
+                btn.textContent = '▶ LOAD MORE RESULTS';
                 btn.onclick = loadMoreResults;
                 const resultsDiv = document.getElementById('results');
                 resultsDiv.parentNode.insertBefore(btn, document.getElementById('export-buttons'));
@@ -1577,7 +1577,7 @@ async def root():
             counterDiv.style.borderRadius = '4px';
             counterDiv.style.boxShadow = '0 0 15px rgba(57, 255, 20, 0.3)';
             counterDiv.style.textShadow = '0 0 8px rgba(57, 255, 20, 0.6)';
-            counterDiv.innerHTML = `✓ Showing ${results.length} credentials`;
+            counterDiv.innerHTML = `▼ Showing ${results.length} credentials`;
             resultsDiv.appendChild(counterDiv);
         }
         
