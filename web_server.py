@@ -153,6 +153,86 @@ async def root():
             background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
             color: #e0e0e0;
             min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* LLUVIA ANIMADA DE CÓDIGO BINARIO Y NÚMEROS - 0101 */
+        body::before {
+            content: '0 1 0 1 1 0 0 1 0 1 0 0 1 1 0 1 0 1 0 1 1 0 0 1 0 1 0 0 1 1 0 1 0 1 0 1 1 0 0 1 0 1 0 0 1 1 0 1 0 1 0 1 1 0 0 1 0 1 0 0 1 1 0 1 2 3 5 8 7 4 9 6 1 2 3 5 8 7 4 9 6 0 1 0 1 1 0 0 1 0 1 0 0 1 1 0 1 0 1 0 1 1 0 0 1 0 1 0 0 1 1 0 1 0 1 0 1 1 0 0 1 0 1 0 0 1 1 0 1 2 3 5 8 7 4 9 6 1 2 3 5 8 7 4 9 6 0 1 0 1 1 0 0 1 0 1 0 0 1 1 0 1';
+            position: fixed;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 200%;
+            font-family: 'Courier New', monospace;
+            font-size: 18px;
+            font-weight: bold;
+            color: #39ff14;
+            text-shadow: 
+                0 0 10px rgba(57, 255, 20, 0.8),
+                0 0 20px rgba(57, 255, 20, 0.5),
+                0 0 30px rgba(57, 255, 20, 0.3);
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            z-index: 0;
+            pointer-events: none;
+            line-height: 1.8;
+            letter-spacing: 8px;
+            opacity: 0.7;
+            animation: binary-rain 15s linear infinite;
+            overflow: hidden;
+        }
+        
+        @keyframes binary-rain {
+            0% {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+        
+        /* EFECTO DE GLITCH EN LA LLUVIA */
+        @keyframes glitch {
+            0%, 100% { text-shadow: 0 0 10px rgba(57, 255, 20, 0.8), 0 0 20px rgba(57, 255, 20, 0.5); }
+            25% { text-shadow: -2px 0 #39ff14, 2px 0 rgba(57, 255, 20, 0.5), 0 0 10px rgba(57, 255, 20, 0.8); }
+            50% { text-shadow: 0 0 15px rgba(57, 255, 20, 0.9), 0 0 30px rgba(57, 255, 20, 0.6); }
+            75% { text-shadow: 2px 0 #39ff14, -2px 0 rgba(57, 255, 20, 0.5), 0 0 10px rgba(57, 255, 20, 0.8); }
+        }
+        
+        body::after {
+            content: '1 0 1 0 0 1 1 0 1 0 1 1 0 0 1 0 1 0 1 0 0 1 1 0 1 0 1 1 0 0 1 0 1 0 1 0 0 1 1 0 1 0 1 1 0 0 1 0 1 0 1 0 0 1 1 0 1 0 1 1 0 0 1 0 9 4 7 6 5 2 8 3 9 4 7 6 5 2 8 3 1 0 1 0 0 1 1 0 1 0 1 1 0 0 1 0 1 0 1 0 0 1 1 0 1 0 1 1 0 0 1 0 1 0 1 0 0 1 1 0 1 0 1 1 0 0 1 0 9 4 7 6 5 2 8 3 9 4 7 6 5 2 8 3 1 0 1 0 0 1 1 0 1 0 1 1 0 0 1 0';
+            position: fixed;
+            top: -150%;
+            left: 0;
+            width: 100%;
+            height: 250%;
+            font-family: 'Courier New', monospace;
+            font-size: 18px;
+            font-weight: bold;
+            color: #39ff14;
+            text-shadow: 
+                0 0 12px rgba(57, 255, 20, 0.9),
+                0 0 25px rgba(57, 255, 20, 0.6),
+                0 0 40px rgba(57, 255, 20, 0.3);
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            z-index: 0;
+            pointer-events: none;
+            line-height: 1.8;
+            letter-spacing: 8px;
+            opacity: 0.6;
+            animation: binary-rain 18s linear infinite reverse;
+            overflow: hidden;
         }
         
         .navbar {
@@ -205,6 +285,8 @@ async def root():
             max-width: 1200px;
             margin: 0 auto;
             padding: 80px 50px;
+            position: relative;
+            z-index: 10;
         }
         
         .hero {
