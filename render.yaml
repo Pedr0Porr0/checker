@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: checker-api
+    runtime: python
+    runtimeVersion: 3.14
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn web_server:app --host 0.0.0.0 --port $PORT
+    plan: free
+    preDeployCommand: pip install -r requirements.txt
+    
+    # Environment variables (add your API keys in Render dashboard)
+    envVars:
+      - key: LEAKSYR_API_KEY
+        sync: false
+      - key: SHODAN_API_KEY
+        sync: false
+      - key: CENSYS_API_KEY
+        sync: false
+      - key: CENSYS_API_SECRET
+        sync: false
+
+# ✅ RECOMENDADO para FastAPI
+# Este archivo permite deploy automático en Render.com
+# 1. Crea cuenta en Render.com
+# 2. Conecta tu GitHub
+# 3. Crea nuevo Web Service
+# 4. Render leerá este archivo automáticamente

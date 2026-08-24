@@ -1,0 +1,16 @@
+[build]
+command = "pip install -r requirements.txt"
+functions = "netlify/functions"
+publish = "public"
+
+[build.environment]
+PYTHON_VERSION = "3.14"
+
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200
+
+# NOTE: Este proyecto requiere backend FastAPI
+# Netlify solo sirve archivos estáticos
+# Para deploy full-stack, usa Render.com, Railway.app o Heroku
